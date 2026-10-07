@@ -1,81 +1,507 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Milyana ♡</title>
 
-    <title>p</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        body {
+            min-height: 100vh;
+            font-family: "Georgia", serif;
+            background:
+                radial-gradient(circle at 20% 20%, #f8dfe5 0 3%, transparent 4%),
+                radial-gradient(circle at 80% 70%, #ead0d5 0 3%, transparent 4%),
+                #fff8f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #5b252f;
+        }
+
+        /* ===== BACKGROUND DECORATION ===== */
+
+        .decor {
+            position: fixed;
+            font-size: 25px;
+            animation: float 4s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: 0;
+        }
+
+        .d1 {
+            top: 10%;
+            left: 8%;
+        }
+
+        .d2 {
+            top: 20%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+        .d3 {
+            bottom: 15%;
+            left: 12%;
+            animation-delay: 2s;
+        }
+
+        .d4 {
+            bottom: 10%;
+            right: 12%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(8deg);
+            }
+        }
+
+        /* ===== CARD ===== */
+
+        .container {
+            width: 90%;
+            max-width: 430px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card {
+            background: #fffdf9;
+            border: 2px solid #7d3542;
+            border-radius: 25px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow:
+                8px 8px 0 #d8aeb6,
+                0 15px 35px rgba(91, 37, 47, 0.15);
+            position: relative;
+        }
+
+        .tape {
+            position: absolute;
+            width: 75px;
+            height: 22px;
+            background: #e9b8c1;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            opacity: 0.8;
+        }
+
+        .small-text {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: #a15b69;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 43px;
+            color: #702d3b;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            color: #9a626b;
+            margin-bottom: 25px;
+        }
+
+        /* ===== ENVELOPE ===== */
+
+        .envelope-area {
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .envelope {
+            width: 260px;
+            height: 160px;
+            position: relative;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .envelope:hover {
+            transform: translateY(-7px) rotate(-1deg);
+        }
+
+        .envelope-body {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 125px;
+            background: #f2cbd1;
+            border: 2px solid #7d3542;
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .envelope-body::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            border-style: solid;
+            border-width: 60px 130px 0 0;
+            border-color: #e8b9c2 transparent transparent transparent;
+        }
+
+        .envelope-body::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            border-style: solid;
+            border-width: 0 0 60px 130px;
+            border-color: transparent transparent #e8b9c2 transparent;
+        }
+
+        .flap {
+            position: absolute;
+            top: 25px;
+            width: 0;
+            height: 0;
+            border-left: 130px solid transparent;
+            border-right: 130px solid transparent;
+            border-top: 80px solid #d993a1;
+            z-index: 4;
+            transform-origin: top;
+            transition: 0.8s;
+        }
+
+        .letter {
+            position: absolute;
+            width: 220px;
+            height: 140px;
+            background: #fffdf9;
+            left: 20px;
+            top: 30px;
+            padding: 15px;
+            border: 1px solid #d8aeb6;
+            border-radius: 5px;
+            z-index: 1;
+            transition: 0.8s;
+            text-align: center;
+        }
+
+        .letter p {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #703944;
+            line-height: 1.5;
+        }
+
+        .seal {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #7d3542;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            left: 50%;
+            top: 80px;
+            transform: translateX(-50%);
+            z-index: 5;
+            transition: 0.5s;
+        }
+
+        /* ===== OPEN ANIMATION ===== */
+
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope.open .letter {
+            transform: translateY(-105px);
+            z-index: 3;
+        }
+
+        .envelope.open .seal {
+            opacity: 0;
+            transform: translateX(-50%) scale(0);
+        }
+
+        .hint {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            color: #a15b69;
+            margin-top: -5px;
+        }
+
+        /* ===== MESSAGE ===== */
+
+        .message {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .message.show {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 15px;
+        }
+
+        .message h2 {
+            font-size: 25px;
+            color: #702d3b;
+            margin-bottom: 12px;
+        }
+
+        .message p {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #68434a;
+        }
+
+        .signature {
+            margin-top: 18px;
+            font-style: italic;
+            color: #8c4654;
+        }
+
+        /* ===== BUTTON ===== */
+
+        button {
+            margin-top: 20px;
+            border: none;
+            background: #7d3542;
+            color: white;
+            padding: 11px 22px;
+            border-radius: 30px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 13px;
+        }
+
+        button:hover {
+            background: #9b4a5b;
+            transform: scale(1.05);
+        }
+
+        /* ===== CONFETTI ===== */
+
+        .confetti {
+            position: fixed;
+            width: 8px;
+            height: 14px;
+            top: -20px;
+            z-index: 10;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+
+        @media (max-width: 450px) {
+            h1 {
+                font-size: 35px;
+            }
+
+            .card {
+                padding: 25px 18px;
+            }
+
+            .envelope {
+                transform: scale(0.9);
+            }
+
+            .envelope:hover {
+                transform: scale(0.9) translateY(-7px);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- HALAMAN PEMBUKA -->
-    <section id="opening" class="opening">
+    <!-- Dekorasi -->
+    <div class="decor d1">♡</div>
+    <div class="decor d2">✦</div>
+    <div class="decor d3">🌷</div>
+    <div class="decor d4">☆</div>
 
-        <div class="sparkle">✦</div>
-
-        <p class="small-title">
-            camikum
-        </p>
-
-        <h1>
-            nyoh cik<br>
-            <span>buka</span>
-        </h1>
-
-        <button onclick="openMessage()">
-            buka
-        </button>
-
-    </section>
-
-
-    <!-- ISI SURAT -->
-    <section id="message" class="message hidden">
+    <div class="container">
 
         <div class="card">
 
-            <p class="small-title">
-                bwt bestyqu cyank
-            </p>
+            <div class="tape"></div>
 
-            <h1>
-               cacengg, oiyaabangg
-            </h1>
-
-            <div class="line"></div>
-
-            <p>
-                makasii ya cik, uda mw jd shbat trbaik ak :›
-            </p>
-
-            <p>
-                semoga keselamatan & kebahagiaan
-                selalu menyertaimu dimanapun kamu berada y cek.
-            </p>
-
-            <p>
-                ttep jdi ceesku slmanya yhh.
-            </p>
-
-            <div class="love">
-                love u mwah
+            <div class="small-text">
+                A LITTLE SOMETHING FOR
             </div>
 
-            <p class="from">
-                doakan ak langgeng sm bima y AOWKAOWK
-            </p>
+            <h1>Milyanaa</h1>
+
+            <div class="subtitle">
+                a tiny birthday card for u
+            </div>
+
+            <!-- Amplop -->
+            <div class="envelope-area">
+
+                <div class="envelope" id="envelope">
+
+                    <div class="letter">
+                        <p>
+                            apaanii👀
+                        </p>
+                    </div>
+
+                    <div class="flap"></div>
+
+                    <div class="envelope-body"></div>
+
+                    <div class="seal">
+                        ♡
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hint" id="hint">
+                klik amplopnya 
+            </div>
+
+            <!-- Isi ucapan -->
+            <div class="message" id="message">
+
+                <h2>Happy Birthday! 🎂</h2>
+
+                <p>
+                    Happy Birthday mbaa:> 🥳
+                    Semoga di umur yang baru ini kamu selalu
+                    dikelilingi hal-hal baik, orang-orang baik,
+                    dan kejutan-kejutan kecil yang bikin kamu
+                    bahagia.
+                </p>
+
+                <br>
+
+                <p>
+                    Semoga semua yang kamu semogakan perlahan
+                    bisa jadi kenyataan. Tetep jadi Mba Husna yang baik dan ceria yaa.
+                    Semoga hari ini jadi salah satu hari yang
+                    paling kamu inget. 
+                </p>
+
+                <div class="signature">
+                    doakan ak langgeng sm bima yh hahahuyy
+                </div>
+
+                <button onclick="makeConfetti()">
+                    klik kalau mau hujan kebahagiaan ✨
+                </button>
+
+            </div>
 
         </div>
 
-    </section>
+    </div>
+
+    <script>
+
+        const envelope = document.getElementById("envelope");
+        const message = document.getElementById("message");
+        const hint = document.getElementById("hint");
+
+        envelope.addEventListener("click", function () {
+
+            envelope.classList.toggle("open");
+
+            if (envelope.classList.contains("open")) {
+
+                hint.innerHTML = " YEAYY MET ULTAH TAHUN HBD BIRTHDAYY";
+
+                setTimeout(() => {
+                    message.classList.add("show");
+                    makeConfetti();
+                }, 500);
+
+            } else {
+
+                hint.innerHTML = "klik amplopnya ♡";
+                message.classList.remove("show");
+
+            }
+
+        });
 
 
-    <script src="towew.js"></script>
+        function makeConfetti() {
+
+            const symbols = ["♡", "✦", "♥", "✧", "•"];
+
+            for (let i = 0; i < 45; i++) {
+
+                const confetti = document.createElement("div");
+
+                confetti.classList.add("confetti");
+
+                confetti.innerHTML =
+                    symbols[Math.floor(Math.random() * symbols.length)];
+
+                confetti.style.left =
+                    Math.random() * 100 + "vw";
+
+                confetti.style.fontSize =
+                    (Math.random() * 12 + 8) + "px";
+
+                confetti.style.animationDuration =
+                    (Math.random() * 2 + 2) + "s";
+
+                confetti.style.animationDelay =
+                    Math.random() * 0.5 + "s";
+
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 4000);
+            }
+        }
+
+    </script>
 
 </body>
-
 </html>
